@@ -31,7 +31,9 @@ export default function Home() {
             <div className="flex flex-wrap -mx-4">
               <div className="mb-8 lg:mb-0 w-full md:w-1/2 lg:w-1/3 px-4">
                 <div className="py-10 px-6 bg-white shadow rounded text-center">
-                  <span className="mb-6 w-16 h-16 inline-flex justify-center items-center bg-green-100 rounded text-2xl text-green-600 font-bold">1</span>
+                  <span className="mb-6 w-16 h-16 inline-flex justify-center items-center bg-green-100 rounded text-2xl text-green-600 font-bold">
+                    1
+                  </span>
                   <h3 className="mb-4 text-2xl font-bold font-heading">Create profile</h3>
                   <p className="text-gray-500 leading-loose">
                     Describe who you are, what are your skills, and what would you like to build.{' '}
@@ -40,7 +42,9 @@ export default function Home() {
               </div>
               <div className="mb-8 lg:mb-0 w-full md:w-1/2 lg:w-1/3 px-4">
                 <div className="py-10 px-6 bg-white shadow rounded text-center">
-                  <span className="mb-6 w-16 h-16 inline-flex justify-center items-center bg-green-100 rounded text-2xl text-green-600 font-bold">2</span>
+                  <span className="mb-6 w-16 h-16 inline-flex justify-center items-center bg-green-100 rounded text-2xl text-green-600 font-bold">
+                    2
+                  </span>
                   <h3 className="mb-4 text-2xl font-bold font-heading">Meet creators</h3>
                   <p className="text-gray-500 leading-loose">
                     Setup filters and start looking through other profiles. Interested in talking to
@@ -50,7 +54,9 @@ export default function Home() {
               </div>
               <div className="w-full md:w-full lg:w-1/3 px-4">
                 <div className="py-10 px-6 bg-white shadow rounded text-center">
-                  <span className="mb-6 w-16 h-16 inline-flex justify-center items-center bg-green-100 rounded text-2xl text-green-600 font-bold">3</span>
+                  <span className="mb-6 w-16 h-16 inline-flex justify-center items-center bg-green-100 rounded text-2xl text-green-600 font-bold">
+                    3
+                  </span>
                   <h3 className="mb-4 text-2xl font-bold font-heading">Perfect match</h3>
                   <p className="text-gray-500 leading-loose">
                     If somebody liked back your profile you have a match! Now you may instantly jump

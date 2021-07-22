@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import classNames from 'classnames';
+import { useSession } from 'next-auth/client';
 
 const Navigation = () => {
   const [isNavOpen, setNavOpen] = useState(false);
+  const [session, loading] = useSession();
 
   return (
     <section className="container mx-auto">
@@ -31,11 +33,20 @@ const Navigation = () => {
             </a>
           </li>
         </ul>
-        <Link href="/login">
-          <a className="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-l-xl rounded-t-xl transition duration-200">
-            Sign in
-          </a>
-        </Link>
+        {!session && !loading && (
+          <Link href="/login">
+            <a className="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-l-xl rounded-t-xl transition duration-200">
+              Sign in
+            </a>
+          </Link>
+        )}
+        {session && !loading && (
+          <Link href="/">
+            <a className="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-white font-bold rounded-l-xl rounded-t-xl transition duration-200">
+              {session.user.name}
+            </a>
+          </Link>
+        )}
       </nav>
       <div className={classNames(['navbar-menu', 'relative', 'z-50'], { hidden: !isNavOpen })}>
         <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
@@ -73,12 +84,10 @@ const Navigation = () => {
           <div className="mt-auto">
             <div className="pt-6">
               <Link href="/login">
-                <a
-                  className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-green-600 hover:bg-green-700 rounded-l-xl rounded-t-xl">
+                <a className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-green-600 hover:bg-green-700 rounded-l-xl rounded-t-xl">
                   Sign In
                 </a>
               </Link>
-
             </div>
             <p className="my-4 text-xs text-center text-gray-400">
               <span>&copy; 2020 All rights reserved.</span>
