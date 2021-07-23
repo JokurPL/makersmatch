@@ -1,6 +1,7 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { user } from 'models';
 
-export default (req, res) => {
+export default async (req, res) => {
+  const allUsers = await user.findMany();
   res.statusCode = 200;
-  res.json({ name: 'John Doe' });
+  res.json({ allUsers });
 };
