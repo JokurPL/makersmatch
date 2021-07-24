@@ -19,7 +19,7 @@ const Navigation = () => {
             className="navbar-burger flex items-center text-green-600 p-3">
             <svg
               className="block h-4 w-4 fill-current"
-              viewbox="0 0 20 20"
+              viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
               <title>Mobile menu</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
@@ -60,7 +60,7 @@ const Navigation = () => {
                 className="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                viewbox="0 0 24 24"
+                viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path
                   strokeLinecap="round"
@@ -105,16 +105,16 @@ const Footer = () => {
       <div className="skew skew-top mr-for-radius">
         <svg
           className="h-8 md:h-12 lg:h-20 w-full text-gray-50"
-          viewbox="0 0 10 10"
-          preserveaspectratio="none">
+          viewBox="0 0 10 10"
+          preserveAspectRatio="none">
           <polygon fill="currentColor" points="0 0 10 10 0 10"></polygon>
         </svg>
       </div>
       <div className="skew skew-top ml-for-radius">
         <svg
           className="h-8 md:h-12 lg:h-20 w-full text-gray-50"
-          viewbox="0 0 10 10"
-          preserveaspectratio="none">
+          viewBox="0 0 10 10"
+          preserveAspectRatio="none">
           <polygon fill="currentColor" points="0 10 10 0 10 10"></polygon>
         </svg>
       </div>
@@ -128,16 +128,16 @@ const Footer = () => {
       <div className="skew skew-bottom mr-for-radius">
         <svg
           className="h-8 md:h-12 lg:h-20 w-full text-gray-50"
-          viewbox="0 0 10 10"
-          preserveaspectratio="none">
+          viewBox="0 0 10 10"
+          preserveAspectRatio="none">
           <polygon fill="currentColor" points="0 0 10 0 0 10"></polygon>
         </svg>
       </div>
       <div className="skew skew-bottom ml-for-radius">
         <svg
           className="h-8 md:h-12 lg:h-20 w-full text-gray-50"
-          viewbox="0 0 10 10"
-          preserveaspectratio="none">
+          viewBox="0 0 10 10"
+          preserveAspectRatio="none">
           <polygon fill="currentColor" points="0 0 10 0 10 10"></polygon>
         </svg>
       </div>

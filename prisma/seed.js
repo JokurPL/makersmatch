@@ -1,128 +1,93 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+// const { PrismaClient } = require('@prisma/client');
+// const fetch = require('node-fetch');
+// const prisma = new PrismaClient();
 
-const createUsers = async () => {
-  const alice = await prisma.user.upsert({
-    where: { email: 'alice@fullstak.pl' },
-    update: {
-      updatedAt: new Date()
-    },
-    create: {
-      email: `alice@fullstak.pl`,
-      name: 'Alice',
-      skill: 'Fullstack Developer',
-      timezone: '+02:00'
-    }
-  });
+// const initialSkills = [
+//   'Front-end Developer',
+//   'Back-end Developer',
+//   'Mobile Developer',
+//   'Data Scientist',
+//   'UI Designer',
+//   'UX Designer',
+//   'Tester',
+//   'Fullstack Developer',
+//   'Scrum Master',
+//   'Project Manager',
+//   'Product Owner',
+//   'Business Analyst',
+//   'Cyber Security Engineer'
+// ];
 
-  const bob = await prisma.user.upsert({
-    where: { email: 'bob@fullstak.pl' },
-    update: {
-      updatedAt: new Date()
-    },
-    create: {
-      email: 'bob@fullstak.pl',
-      name: 'Bob',
-      skill: 'UI Designer',
-      timezone: '+02:00'
-    }
-  });
+// const initialTimezones = [
+//   'GMT',
+//   'GMT+1:00',
+//   'GMT+2:00',
+//   'GMT+3:00',
+//   'GMT+4:00',
+//   'GMT+5:00',
+//   'GMT+6:00',
+//   'GMT+7:00',
+//   'GMT+8:00',
+//   'GMT+9:00',
+//   'GMT+10:00',
+//   'GMT+11:00',
+//   'GMT+12:00',
+//   'GMT-11:00',
+//   'GMT-10:00',
+//   'GMT-9:00',
+//   'GMT-8:00',
+//   'GMT-7:00',
+//   'GMT-6:00',
+//   'GMT-5:00',
+//   'GMT-4:00',
+//   'GMT-3:00',
+//   'GMT-2:00',
+//   'GMT-1:00'
+// ];
 
-  const anna = await prisma.user.upsert({
-    where: { email: 'anna@fullstak.pl' },
-    update: {
-      updatedAt: new Date()
-    },
-    create: {
-      email: 'anna@fullstak.pl',
-      name: 'Anna',
-      skill: 'Android Developer',
-      timezone: '+02:00'
-    }
-  });
+// const randomSkill = () => initialSkills[Math.floor(Math.random() * initialSkills.length)];
 
-  return [alice, bob, anna];
-};
+// const randomTimezone = () => initialTimezones[Math.floor(Math.random() * initialTimezones.length)];
 
-const createFilters = async () => {
-  const alice = await prisma.user.findUnique({
-    where: { email: 'alice@fullstak.pl' },
-    include: {
-      filter: true
-    }
-  });
+// const createSkills = async () => {
+//   await prisma.skill.createMany({
+//     data: initialSkills.map((name) => ({ name }))
+//   });
+// };
 
-  if (!alice.filter) {
-    await prisma.filter.create({
-      data: {
-        user: {
-          connect: {
-            id: alice.id
-          }
-        },
-        skill: 'UI Developer',
-        timezone: '+02:00'
-      }
-    });
-  }
-};
+// const createTimezones = async () => {
+//   await prisma.timezone.createMany({
+//     data: initialTimezones.map((name) => ({ name }))
+//   });
+// };
 
-const createConservation = async (users) => {
-  await prisma.conversation.create({
-    data: {
-      users: {
-        create: [
-          {
-            user: {
-              connect: {
-                id: users[0].id
-              }
-            }
-          },
-          {
-            user: {
-              connect: {
-                id: users[1].id
-              }
-            }
-          }
-        ]
-      },
-      messages: {
-        create: [
-          {
-            content: 'Hi, how are you?',
-            user: {
-              connect: {
-                id: users[0].id
-              }
-            }
-          },
-          {
-            content: 'Hi, im ok',
-            user: {
-              connect: {
-                id: users[1].id
-              }
-            }
-          }
-        ]
-      }
-    }
-  });
-};
+// const createUsers = async () => {
+//   const randomUsersResponse = await fetch('https://randomuser.me/api/?results=50');
+//   const randomUsers = await randomUsersResponse.json();
 
-async function main() {
-  const [alice, bob, anna] = await createUsers();
-  await createFilters();
-  await createConservation([alice, bob]);
-}
+//   await prisma.user.createMany({
+//     data: randomUsers.results.map((user) => ({
+//       email: user.email,
+//       name: `${user.name.first} ${user.name.last}`,
+//       emailVerified: new Date(),
+//       image: user.picture.large,
+//       skill: randomSkill(),
+//       timezone: randomTimezone()
+//     }))
+//   });
+// };
 
-main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+// async function main() {
+//   // await createSkills();
+//   // await createTimezones();
+//   await createUsers();
+// }
+
+// main()
+//   .catch((e) => {
+//     console.error(e);
+//     process.exit(1);
+//   })
+//   .finally(async () => {
+//     await prisma.$disconnect();
+//   });
