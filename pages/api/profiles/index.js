@@ -25,7 +25,9 @@ const userProfileApi = async (req, res) => {
           targetUserId: Number(targetUserId)
         });
 
-        res.status(200).json({ hasMatch, targetUser });
+        const nextProfile = await findMatch({ userId });
+
+        res.status(200).json({ hasMatch, targetUser, nextProfile });
       } catch (err) {
         res.status(422).json({ hasMatch: false, targetUser: null, error: err.message });
       }
@@ -40,8 +42,11 @@ const userProfileApi = async (req, res) => {
           targetUserId: Number(targetUserId)
         });
 
-        res.status(200).json({ targetUser });
+        const nextProfile = await findMatch({ userId });
+
+        res.status(200).json({ targetUser, nextProfile });
       } catch (err) {
+        console.log(err);
         res.status(422).json({ targetUser: null, error: err.message });
       }
       break;

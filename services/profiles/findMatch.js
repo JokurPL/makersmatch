@@ -27,8 +27,8 @@ const findMatch = async ({ userId }) => {
   const ids = await checkedId(userId);
   const profile = await user.findFirst({
     where: {
-      skill: filter.skill,
-      timezone: filter.timezone,
+      skill: userFilter.skill,
+      timezone: userFilter.timezone,
       NOT: {
         id: { in: ids }
       }

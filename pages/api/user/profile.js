@@ -1,8 +1,22 @@
 import onlyAuth from 'middlewares/onlyAuth';
+import { user as userModel } from 'models';
 import { updateProfile } from 'services/profiles/update';
 
 const userProfileApi = async (req, res) => {
   switch (req.method) {
+    case 'GET': {
+      const user = await userModel.findUnique({
+        where: {
+          id: req.currentUser.id
+        },
+        include: {
+          filter: true
+        }
+      });
+      res.status(200).json({ user });
+      break;
+    }
+
     case 'PUT': {
       try {
         const payload = req.body;

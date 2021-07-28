@@ -132,3 +132,21 @@ model VerificationRequest {
 
   @@map(name: "verification_requests")
 }
+
+model Skill {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("skills")
+}
+
+model Timezone {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("timezones")
+}
