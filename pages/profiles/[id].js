@@ -62,9 +62,7 @@ export default function ProfilPage({ profile, skills, timezones }) {
       setCurrentUser(user);
     };
 
-    if (!loading) {
-      fetchUser();
-    }
+    fetchUser();
   }, [session, loading]);
 
   const handleSkip = async () => {

@@ -11,4 +11,5 @@ if (process.env.NODE_ENV === 'production') {
   prisma = global.prisma;
 }
 
-export const { user, filter, profileCheck, conversation, skill, timezone } = prisma;
+export const { user, filter, profileCheck, conversation, skill, timezone, conversationMessage } =
+  prisma;

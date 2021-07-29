@@ -45,3 +45,13 @@ Cookie: {{sessionToken}}
 {
     "targetUserId": 25
 }
+
+###
+GET http://localhost:3000/api/conversations
+Content-Type: application/json
+Cookie: {{sessionToken}}
+
+###
+GET http://localhost:3000/api/conversations/2
+Content-Type: application/json
+Cookie: {{sessionToken}}

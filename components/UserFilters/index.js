@@ -1,3 +1,4 @@
+import Loader from 'components/Loader';
 import { useRouter } from 'next/router';
 import apiRoutes from 'utils/apiRoutes';
 
@@ -11,8 +12,7 @@ const UserFilters = ({ skills, timezones, currentUser }) => {
     router.push('/profiles/browse');
   };
 
-  if (!currentUser) return <p>Loading...</p>;
-
+  if (!currentUser) return <Loader color="bg-green-400" />;
   return (
     <form action="#" method="post">
       <div className="flex flex-wrap -mx-4 -mb-4 md:mb-0">
