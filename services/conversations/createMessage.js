@@ -23,7 +23,7 @@ export const create = async ({ userId, conversationId, content }) => {
       },
       user: {
         connect: {
-          userId
+          id: userId
         }
       },
       content,

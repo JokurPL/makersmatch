@@ -1,6 +1,6 @@
-const { conversation } = require('models');
+import { conversation } from 'models';
 
-const getAllConversation = ({ userId }) =>
+export const getAllConversation = ({ userId }) =>
   conversation.findMany({
     where: {
       users: {
@@ -22,5 +22,3 @@ const getAllConversation = ({ userId }) =>
       }
     }
   });
-
-export default getAllConversation;

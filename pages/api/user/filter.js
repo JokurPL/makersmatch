@@ -13,7 +13,6 @@ const userFilterApi = async (req, res) => {
 
         res.status(200).json({ filter });
       } catch (err) {
-        console.log(err);
         res.status(422).json({ filter: null, error: err });
       }
       break;

@@ -9,7 +9,6 @@ const conversationApi = async (req, res) => {
 
         res.status(200).json({ conversations });
       } catch (error) {
-        console.log(error);
         res.status(422).json({ conversations: [], error });
       }
       break;

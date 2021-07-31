@@ -32,6 +32,16 @@ const Navigation = () => {
               Start
             </a>
           </li>
+          <li>
+            <Link href="/profiles/browse">
+              <a className="text-sm text-gray-400 hover:text-gray-500">Browse</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/connections">
+              <a className="text-sm text-gray-400 hover:text-gray-500">Connections</a>
+            </Link>
+          </li>
         </ul>
         {!session && !loading && (
           <Link href="/login">
@@ -78,6 +88,20 @@ const Navigation = () => {
                   href="/">
                   Start
                 </a>
+              </li>
+              <li className="mb-1">
+                <Link href="/profiles/browse">
+                  <a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded">
+                    Browse
+                  </a>
+                </Link>
+              </li>
+              <li className="mb-1">
+                <Link href="/connections">
+                  <a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded">
+                    Connections
+                  </a>
+                </Link>
               </li>
             </ul>
           </div>

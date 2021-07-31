@@ -46,7 +46,6 @@ const userProfileApi = async (req, res) => {
 
         res.status(200).json({ targetUser, nextProfile });
       } catch (err) {
-        console.log(err);
         res.status(422).json({ targetUser: null, error: err.message });
       }
       break;
