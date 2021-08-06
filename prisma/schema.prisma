@@ -102,8 +102,10 @@ model ConversationUser {
   conversationId Int
   user           User         @relation(fields: [userId], references: [id])
   userId         Int
-  createdAt      DateTime     @default(now()) @map(name: "created_at")
-  updatedAt      DateTime     @default(now()) @map(name: "updated_at")
+  read           Boolean      @default(false)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
 
   @@map("conversation_user")
 }

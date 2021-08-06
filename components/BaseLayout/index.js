@@ -2,6 +2,20 @@ import Link from 'next/link';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { useSession } from 'next-auth/client';
+import useSWR from 'swr';
+import apiRoutes from 'utils/apiRoutes';
+
+const ConnectionsLink = () => {
+  const { data, loading } = useSWR('/api/conversations/', apiRoutes.fetcher);
+
+  return (
+    <Link href="/connections">
+      <a className="text-sm text-gray-400 hover:text-gray-500">
+        Connections {!loading && data?.unread > 0 && ` (${data.unread})`}
+      </a>
+    </Link>
+  );
+};
 
 const Navigation = () => {
   const [isNavOpen, setNavOpen] = useState(false);
@@ -38,9 +52,7 @@ const Navigation = () => {
             </Link>
           </li>
           <li>
-            <Link href="/connections">
-              <a className="text-sm text-gray-400 hover:text-gray-500">Connections</a>
-            </Link>
+            <ConnectionsLink />
           </li>
         </ul>
         {!session && !loading && (

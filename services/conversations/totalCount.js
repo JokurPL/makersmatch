@@ -1,6 +1,6 @@
 import { conversation } from 'models';
 
-export const getAllConversation = ({ userId, page = 0, perPage = 1, searchTerm }) => {
+export const totalCount = async ({ userId, searchTerm }) => {
   let filters = {};
 
   if (searchTerm) {
@@ -17,7 +17,7 @@ export const getAllConversation = ({ userId, page = 0, perPage = 1, searchTerm }
     };
   }
 
-  return conversation.findMany({
+  return conversation.count({
     where: {
       users: {
         some: {
@@ -25,20 +25,6 @@ export const getAllConversation = ({ userId, page = 0, perPage = 1, searchTerm }
         }
       },
       ...filters
-    },
-    include: {
-      users: {
-        include: {
-          user: true
-        }
-      },
-      messages: {
-        include: {
-          user: true
-        }
-      }
-    },
-    skip: page * perPage,
-    take: perPage
+    }
   });
 };

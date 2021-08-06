@@ -1,15 +1,20 @@
-import { user } from 'models';
-import { getSession } from 'next-auth/client';
-import getConversation from 'services/conversations/getConversation';
-import apiRoutes from 'utils/apiRoutes';
-import useSWR, { mutate } from 'swr';
 import { useRef } from 'react';
 import BaseLayout from 'components/BaseLayout';
+import apiRoutes from 'utils/apiRoutes';
+import { user } from 'models';
+import { getSession } from 'next-auth/client';
+import useSWR, { mutate } from 'swr';
+import Head from 'next/head';
+import getConversation from 'services/conversations/getConversation';
 
 export const getServerSideProps = async ({ req, params }) => {
   const session = await getSession({ req });
 
-  if (!session) return { notFound: true };
+  if (!session) {
+    return {
+      notFound: true
+    };
+  }
 
   const currentUser = await user.findUnique({
     where: {
@@ -19,7 +24,11 @@ export const getServerSideProps = async ({ req, params }) => {
 
   const conversation = await getConversation({ id: Number(params.id), userId: currentUser.id });
 
-  if (!conversation) return { notFound: true };
+  if (!conversation) {
+    return {
+      notFound: true
+    };
+  }
 
   return {
     props: { initConversation: conversation, currentUser }
@@ -78,12 +87,14 @@ export default function Connections({ initConversation, currentUser }) {
   const {
     data: { conversation }
   } = useSWR(`/api/conversations/${initConversation.id}`, apiRoutes.fetcher, {
-    initialData: { conversation: initConversation },
-    refreshInterval: 2000
+    initialData: { conversation: initConversation }
   });
 
   return (
     <BaseLayout>
+      <Head>
+        <title>Conversation</title>
+      </Head>
       <div className="w-full px-5 flex flex-col justify-between bg-gree">
         <div className="flex flex-col mt-5">
           {conversation.messages.map((message) => {
