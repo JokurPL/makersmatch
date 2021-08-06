@@ -9,6 +9,7 @@ import Head from 'next/head';
 import BaseLayout from 'components/BaseLayout';
 import UserFilters from 'components/UserFilters';
 import MatchModal from 'components/MatchModal';
+import Loader from 'components/Loader';
 
 export const getStaticPaths = async () => {
   const profiles = await user.findMany();
@@ -97,6 +98,10 @@ export default function ProfilPage({ profile, skills, timezones }) {
     }
   };
 
+  if (!profile) {
+    return <Loader />;
+  }
+
   return (
     <BaseLayout>
       <Head>
@@ -137,7 +142,7 @@ export default function ProfilPage({ profile, skills, timezones }) {
                 <div className="w-full lg:w-1/3">
                   <img
                     className="mb-5 lg:mb-0 w-full rounded-lg object-cover"
-                    style={{ maxHeight: '350px;' }}
+                    style={{ maxHeight: '350px' }}
                     src={profile.image}
                     alt=""
                   />

@@ -10,7 +10,7 @@ import getAllTimezones from 'services/timezones/getAllTimezones';
 export const getServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
 
-  if (!session) return { notFound: true };
+  if (!session) return { redirect: { destination: '/login', permanent: false } };
 
   const currentUser = await user.findUnique({
     where: {

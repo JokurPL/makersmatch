@@ -13,7 +13,7 @@ import { useRef } from 'react';
 export const getServerSideProps = async ({ req, query }) => {
   const session = await getSession({ req });
 
-  if (!session) return { notFound: true };
+  if (!session) return { redirect: { destination: '/login', permanent: false } };
 
   const currentUser = await userModel.findUnique({
     where: {

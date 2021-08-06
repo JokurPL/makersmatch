@@ -1,17 +1,18 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import classNames from 'classnames';
-import { useSession } from 'next-auth/client';
+import { signOut, useSession } from 'next-auth/client';
 import useSWR from 'swr';
 import apiRoutes from 'utils/apiRoutes';
 
-const ConnectionsLink = () => {
-  const { data, loading } = useSWR('/api/conversations/', apiRoutes.fetcher);
+const ConnectionsLink = ({ isLoggedIn = false, className }) => {
+  const { data, loading } = useSWR(isLoggedIn ? `/api/conversations` : null, apiRoutes.fetcher);
 
   return (
     <Link href="/connections">
-      <a className="text-sm text-gray-400 hover:text-gray-500">
-        Connections {!loading && data?.unread > 0 && ` (${data.unread})`}
+      <a className={className}>
+        Connections
+        {!loading && data?.unread > 0 && ` (${data.unread})`}
       </a>
     </Link>
   );
@@ -40,7 +41,7 @@ const Navigation = () => {
             </svg>
           </button>
         </div>
-        <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
+        <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
           <li>
             <a className="text-sm text-gray-400 hover:text-gray-500" href="/">
               Start
@@ -52,8 +53,29 @@ const Navigation = () => {
             </Link>
           </li>
           <li>
-            <ConnectionsLink />
+            <ConnectionsLink
+              isLoggedIn={session && !loading}
+              className="text-sm text-gray-400 hover:text-gray-500"
+            />
           </li>
+          {session && !loading && (
+            <li>
+              <Link href="/my-profile">
+                <a className="text-sm text-gray-400 hover:text-gray-500">My profile</a>
+              </Link>
+            </li>
+          )}
+          {session && !loading && (
+            <li>
+              <button
+                onClick={() => {
+                  signOut({ callbackUrl: '/' });
+                }}
+                className="text-sm text-gray-400 hover:text-gray-500">
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
         {!session && !loading && (
           <Link href="/login">
@@ -109,9 +131,15 @@ const Navigation = () => {
                 </Link>
               </li>
               <li className="mb-1">
-                <Link href="/connections">
+                <ConnectionsLink
+                  isLoggedIn={session && !loading}
+                  className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded"
+                />
+              </li>
+              <li className="mb-1">
+                <Link href="/my-profile">
                   <a className="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded">
-                    Connections
+                    My profile
                   </a>
                 </Link>
               </li>
